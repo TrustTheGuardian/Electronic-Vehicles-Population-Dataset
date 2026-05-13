@@ -3,11 +3,11 @@
 DATA ANALYTICS
 BSCS – C301
 Group 1: 
-Gomez, Jason
-Lopez, Justine
-Manansala, Joshua
-Tongol, Katriel Cire
-Turla, Lance Amiel
+1. Gomez, Jason
+2. Lopez, Justine
+3. Manansala, Joshua
+4. Tongol, Katriel Cire
+5. Turla, Lance Amiel
 
 DOCUMENTATION
 Dataset: https://www.kaggle.com/datasets/nilesh2042/electric-vehicle-population-data
