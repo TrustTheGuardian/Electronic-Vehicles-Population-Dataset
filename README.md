@@ -13,11 +13,57 @@ Group 1:
 Dataset: https://www.kaggle.com/datasets/nilesh2042/electric-vehicle-population-data
 
 ## 1. Data Preprocessing
+### Data Processing and Normalization
+
+The dataset was cleaned and normalized following the **CLEAN** framework:
+
+* **C — Conceptualize:** Identifies the core entities within the dataset, specifically distinguishing between geographic attributes (postal codes, cities, counties, states) and vehicle-related attributes (VIN numbers, vehicle models, manufacturers).
+* **L — Locate:** Pinpoints instances of data redundancy and inconsistency within the raw dataset that need to be resolved.
+* **E — Evaluate:** Assesses the complex relationships among these various geographic and vehicle attributes to determine the optimal database architecture.
+* **A — Augment:** Enhances the dataset by structuring it into a Snowflake schema design, systematically linking fact tables and sub-dimensions to efficiently manage related details.
+* **N — Note and Document:** Confirms that the normalization process successfully reduced data redundancy, improved overall consistency, and strengthened referential integrity across the database.
+  
 CONCEPTUALIZE THE DATA
 The raw dataset contains over 270,000 rows and 16 columns.
 - Understanding first what every row represents: Each row in the CSV dataset represents an electric vehicle (EV) registered in a state within the United States of America (USA). A vehicle with a DOL ID indicates that it has been officially purchased, registered, and approved for road use.
 - Understanding what each code means: Each record contains a unique Department of Licensing (DOL) ID, geographic information such as postal code, city, county, and state, as well as vehicle identification details including VIN, model year, manufacturer or brand, vehicle model, electric vehicle type, driving range, and eligibility as an alternative fuel vehicle.
 - Identify whether things are qualitative or categorical values: The dataset contains geographic dimensions, vehicle specifications, and categorical eligibility types.
+
+
+### Locate Solvable Issues
+
+Issues found:
+
+1. **Inconsistent Formatting:** Some postal codes were inconsistently formatted, where identical postal codes appeared both with and without leading zeros.
+   * **Resolution:** Postal code values were standardized by converting them into consistent numerical representations to simplify processing and comparison.
+   
+   ![Issue 1](IMAGES/Issue1.png)
+
+2. **Invalid Data Entries:** The electric driving range column contained values of 0, which may indicate missing or invalid data.
+   * **Resolution:** Invalid driving range values of 0 were replaced with NULL to properly represent missing or unavailable data.
+   
+   ![Issue 2](IMAGES/Issue2.png)
+
+3. **Data Redundancy:** The dataset contained redundant and repeated information across multiple rows.
+   * **Resolution:** The dataset was normalized into fact tables and sub-dimensions to eliminate redundancy, improve consistency, and ensure that each attribute is stored in only one location.
+   
+   ![Issue 3](IMAGES/Issue3.png)
+
+---
+
+### Evaluate Unsolvable Issues
+
+1. **Missing Values:** The dataset contained missing values.
+   * **Resolution:** Rather than deleting, these were kept in the sub-dimensions to maintain accurate “total count” KPIs but filtered out of map visuals to prevent errors.
+   
+   ![Unsolved Issue 1](IMAGES/UnsolvedIssue1.png)
+   
+   ![Unsolved Issue 2](IMAGES/UnsolvedIssue2.png)
+
+AUGMENT THE DATA
+•	During dataset normalization, unique identifiers were assigned to each sub-dimension to properly handle complex relationships and avoid ambiguity. This includes cases where a single postal code belongs to multiple cities, a city spans multiple counties, counties share the same name across different states, or multiple 
+counties exist within a single state. 
+•	Lookup operations were performed to retrieve and integrate related data from other normalized tables, improving data consistency, relationship mapping, and overall referential integrity.
 
 ## Data Dictionary
 
@@ -77,52 +123,6 @@ The raw dataset contains over 270,000 rows and 16 columns.
 | `Postal_Code` | Float | Primary Key. The ZIP/Postal code | `99114.0` |
 | `City_Code` | String | Foreign Key. Links the postal code to its specific city | `CTY164` |
 
-### Locate Solvable Issues
-
-### Locate Solvable Issues
-
-Issues found:
-
-1. **Inconsistent Formatting:** Some postal codes were inconsistently formatted, where identical postal codes appeared both with and without leading zeros.
-   * **Resolution:** Postal code values were standardized by converting them into consistent numerical representations to simplify processing and comparison.
-   
-   ![Issue 1](IMAGES/Issue1.png)
-
-2. **Invalid Data Entries:** The electric driving range column contained values of 0, which may indicate missing or invalid data.
-   * **Resolution:** Invalid driving range values of 0 were replaced with NULL to properly represent missing or unavailable data.
-   
-   ![Issue 2](IMAGES/Issue2.png)
-
-3. **Data Redundancy:** The dataset contained redundant and repeated information across multiple rows.
-   * **Resolution:** The dataset was normalized into fact tables and sub-dimensions to eliminate redundancy, improve consistency, and ensure that each attribute is stored in only one location.
-   
-   ![Issue 3](IMAGES/Issue3.png)
-
----
-
-### Evaluate Unsolvable Issues
-
-1. **Missing Values:** The dataset contained missing values.
-   * **Resolution:** Rather than deleting, these were kept in the sub-dimensions to maintain accurate “total count” KPIs but filtered out of map visuals to prevent errors.
-   
-   ![Unsolved Issue 1](IMAGES/UnsolvedIssue1.png)
-   
-   ![Unsolved Issue 2](IMAGES/UnsolvedIssue2.png)
-
-AUGMENT THE DATA
-•	During dataset normalization, unique identifiers were assigned to each sub-dimension to properly handle complex relationships and avoid ambiguity. This includes cases where a single postal code belongs to multiple cities, a city spans multiple counties, counties share the same name across different states, or multiple 
-counties exist within a single state. 
-•	Lookup operations were performed to retrieve and integrate related data from other normalized tables, improving data consistency, relationship mapping, and overall referential integrity.
-
-### Data Processing and Normalization
-
-The dataset was cleaned and normalized following the **CLEAN** framework:
-
-* **C — Conceptualize:** Identifies the core entities within the dataset, specifically distinguishing between geographic attributes (postal codes, cities, counties, states) and vehicle-related attributes (VIN numbers, vehicle models, manufacturers).
-* **L — Locate:** Pinpoints instances of data redundancy and inconsistency within the raw dataset that need to be resolved.
-* **E — Evaluate:** Assesses the complex relationships among these various geographic and vehicle attributes to determine the optimal database architecture.
-* **A — Augment:** Enhances the dataset by structuring it into a Snowflake schema design, systematically linking fact tables and sub-dimensions to efficiently manage related details.
-* **N — Note and Document:** Confirms that the normalization process successfully reduced data redundancy, improved overall consistency, and strengthened referential integrity across the database.
 
 # 2. Exploratory Data Analysis (EDA)
 
