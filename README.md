@@ -1,4 +1,6 @@
 # Electric Vehicle Population Data
+## Documentation
+
 DATA ANALYTICS
 BSCS – C301
 Group 1: 
@@ -8,8 +10,8 @@ Group 1:
 4. Tongol, Katriel Cire
 5. Turla, Lance Amiel
 
-DOCUMENTATION
-Dataset: 
+Dataset: https://www.kaggle.com/datasets/nilesh2042/electric-vehicle-population-data
+
 ## 1. Data Preprocessing
 CONCEPTUALIZE THE DATA
 The raw dataset contains over 270,000 rows and 16 columns.
