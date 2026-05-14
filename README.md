@@ -206,3 +206,7 @@ The dashboard design follows the **DASH** framework:
 ### Predictive Analytics Dashboard
 
 ![Predictive Dashboard](PredDash.png)
+
+---
+
+## Insights and Recommendations
