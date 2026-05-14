@@ -190,7 +190,7 @@ The study utilized a combination of descriptive and predictive analytics to prov
 * **Questions Answered:** "What will happen next?" and "At what rate will EV adoption continue to grow?"
 * **Application:** The study involved forecasting techniques—specifically utilizing Power BI's built-in exponential smoothing algorithms. This generated predictive models like the Primary Volume Predictor, which uses trend lines and 95% statistical confidence intervals to illustrate best-case (rapid adoption) and worst-case (market disruption) future scenarios.
 
-## Visualization and Dashboard
+# 4. Visualization and Dashboard
 
 The dashboard design follows the **DASH** framework:
 
@@ -209,4 +209,4 @@ The dashboard design follows the **DASH** framework:
 
 ---
 
-## Insights and Recommendations
+# 5. Insights and Recommendations
