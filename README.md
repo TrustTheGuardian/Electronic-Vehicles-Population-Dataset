@@ -77,24 +77,35 @@ The raw dataset contains over 270,000 rows and 16 columns.
 
 ### Locate Solvable Issues
 
+### Locate Solvable Issues
+
 Issues found:
+
 1. **Inconsistent Formatting:** Some postal codes were inconsistently formatted, where identical postal codes appeared both with and without leading zeros.
    * **Resolution:** Postal code values were standardized by converting them into consistent numerical representations to simplify processing and comparison.
-   <image src="Issue1.png">
+   
+   ![Issue 1](Issue1.png)
 
 2. **Invalid Data Entries:** The electric driving range column contained values of 0, which may indicate missing or invalid data.
    * **Resolution:** Invalid driving range values of 0 were replaced with NULL to properly represent missing or unavailable data.
-   <image src="Issue2.png">
+   
+   ![Issue 2](Issue2.png)
 
 3. **Data Redundancy:** The dataset contained redundant and repeated information across multiple rows.
    * **Resolution:** The dataset was normalized into fact tables and sub-dimensions to eliminate redundancy, improve consistency, and ensure that each attribute is stored in only one location.
-   <image src="Issue3.png">
+   
+   ![Issue 3](Issue3.png)
 
-EVALUATE UNSOLVABLE ISSUES
-  1.  **Missing Values:** The dataset contained missing values.
-  - **Resolution:** Rather than deleting, these were kept in the sub-dimensions to maintain accurate “total count” KPIs but filtered out of map visuals to prevent errors.
-   <image src="UnsolvedIssue1.png">
-   <image src="UnsolvedIssue2.png">
+---
+
+### Evaluate Unsolvable Issues
+
+1. **Missing Values:** The dataset contained missing values.
+   * **Resolution:** Rather than deleting, these were kept in the sub-dimensions to maintain accurate “total count” KPIs but filtered out of map visuals to prevent errors.
+   
+   ![Unsolved Issue 1](UnsolvedIssue1.png)
+   
+   ![Unsolved Issue 2](UnsolvedIssue2.png)
 
 AUGMENT THE DATA
 •	During dataset normalization, unique identifiers were assigned to each sub-dimension to properly handle complex relationships and avoid ambiguity. This includes cases where a single postal code belongs to multiple cities, a city spans multiple counties, counties share the same name across different states, or multiple 
