@@ -221,3 +221,60 @@ The dashboard design follows the **DASH** framework:
 ---
 
 # 5. Insights and Recommendations
+
+## Executive Summary
+
+This report presents findings, insights, and actionable recommendations from the Exploratory Data Analysis (EDA) of the Electric Vehicle (EV) Population Dataset sourced from the Department of Licensing (DOL) via Kaggle. 
+
+The dataset covers Battery Electric Vehicles (BEVs) and Plug-in Hybrid Electric Vehicles (PHEVs) registered across the USA, spanning vehicle, geographic, and technical attributes from model years 1999 to 2027. The data was cleaned and preprocessed using the **CLEAN** framework and structured under a Snowflake schema. Analysis was conducted in Power BI using custom DAX measures and an interactive three-page dashboard (Overview and Forecast).
+
+### High-Level KPIs
+| Total EVs Registered | Current EV Models | Avg. Electric Range | Clean EV % |
+| :--- | :--- | :--- | :--- |
+| 280K | 187 | 70.48 mi | 27.70% |
+
+---
+
+## Key Insights
+
+The following insights are drawn directly from the Power BI dashboard KPIs, DAX measures, and visualizations built by Group 1. Each insight is grounded in actual data outputs and interpreted within a real-world context.
+
+### 1. Tesla Dominates the EV Market Across All Manufacturers
+The "Total EVs by each Manufacturer" chart on the Overview dashboard shows Tesla leading by an extraordinary margin over all 47 registered manufacturers. Chevrolet, Nissan, Ford, Kia, Toyota, BMW, and Hyundai follow as distant competitors. Out of 280,000 total registered EVs, Tesla's volume is more than double the nearest rival. 
+
+This dominance reflects the brand's early market entry, aggressive pricing on its most popular models (which also rank among the highest in Average Electric Range), and its proprietary charging network. Within a competitive field of 47 manufacturers, this level of concentration introduces a structural dependency risk for the state's EV ecosystem as a whole.
+
+### 2. BEV Adoption Outpaces PHEV at 80.02% of Total Registrations
+The "Total EVs by Electric Vehicle Type" donut chart on the Overview page shows Battery Electric Vehicles accounting for 224K registrations (80.02%), while Plug-in Hybrid Electric Vehicles represent 56K (19.98%). 
+
+This 4:1 ratio reflects a clear consumer and policy shift away from transitional hybrid technology. The Forecast page further supports this trend, with BEVs maintaining a consistently higher registration trajectory across all model years. This aligns with Zero Emission Vehicle (ZEV) standards and hydroelectric-heavy power grids, which make full BEV ownership a significantly lower-carbon option compared to most other U.S. states.
+
+### 3. Electric Range Disparity Reveals a 336-Mile Spread Across Registered Models
+The Overview dashboard KPIs show that the Average Electric Range across all registered EVs is 70.48 miles. The "Average Electrical Range of each Model" bar chart shows top models such as the Porsche Macan EV, Tesla Model Y, Hyundai Kona EV, Tesla Model 3, and Chevrolet Bolt EV all exceeding 200 miles. 
+
+The low overall average is pulled down by older, lower-range vehicles still actively registered, indicating an aging fleet segment that may benefit from targeted upgrade programs.
+
+---
+
+## Recommendations
+
+Based on the key insights derived from the Power BI dashboard analysis, the following actionable recommendations are proposed for policymakers, urban planners, EV industry stakeholders, and state government agencies.
+
+### 1. Develop Targeted EV Adoption Programs Outside Major Urban Centers
+Seattle and its surrounding areas account for a disproportionate share of the 280K registered EVs, while rural counties represent a minimal portion. States should implement geographically targeted incentive programs that include expanded Level 2 and DC Fast Charger deployment in mid-size cities (like Spokane, Tacoma, and Yakima) as well as rural corridors. State purchase subsidies should be prioritized for residents outside major urban hubs to directly address the urban-rural adoption gap visible in the `City_Dim` geographic distribution.
+
+### 2. Introduce Manufacturer Diversity Incentives to Reduce Market Concentration Risk
+Tesla's overwhelming lead represents a concentration risk for the EV fleet. A disruption from a single manufacturer due to supply chain issues, regulatory changes, or reputational events could significantly affect infrastructure reliability. State rebate programs should be restructured to offer enhanced incentives for non-Tesla BEV purchases from brands like Hyundai, Ford, Kia, and BMW. This approach broadens consumer choice across price points and supports more equitable access to EV adoption across different income groups.
+
+### 3. Launch a Fleet Modernization Initiative to Raise the Average Electric Range
+The Average Electric Range of 70.48 miles is far below the top-performing models that reach beyond 300 miles. This gap points to a significant portion of the registered fleet still comprising older, lower-range vehicles. A state-backed fleet modernization program offering trade-in incentives for pre-2018 EVs would encourage upgrades to newer, higher-range models. This would directly improve the Average Electric Range KPI, reduce range anxiety as a barrier to EV adoption, and accelerate the retirement of aging vehicles with lower battery efficiency and higher maintenance costs.
+
+---
+
+## Conclusion
+
+The EDA conducted by Group 1 on the Electric Vehicle Population Dataset—built on a Snowflake schema with over 280,000 records and visualized through a three-page Power BI dashboard—reveals an EV market that is growing rapidly, geographically concentrated, and structurally dominated by a single manufacturer.
+
+The three key insights (Tesla's market dominance, the 80.02% BEV adoption rate, and the 70.48-mile average range) provide a data-accurate picture of the USA's current EV landscape. Each finding is directly traceable to the dashboard KPIs and DAX measures developed by the team.
+
+The three corresponding recommendations offer a clear, actionable roadmap: expand charging infrastructure in underserved areas, diversify manufacturer incentives, and modernize the aging EV fleet. Together, these measures support the USA's continued progress in sustainable transportation and its greenhouse gas reduction commitments.
