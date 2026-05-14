@@ -121,6 +121,7 @@ AUGMENT THE DATA
 | `Postal_Code` | Float | Primary Key. The ZIP/Postal code | `99114.0` |
 | `City_Code` | String | Foreign Key. Links the postal code to its specific city | `CTY164` |
 
+---
 
 # 2. Exploratory Data Analysis (EDA)
 
@@ -173,6 +174,7 @@ Max Electric Range = MAX(Vehicle_Dim[Electric Range])
 ```dax
 Min Electric Range = MIN(Vehicle_Dim[Electric Range])
 ```
+---
 
 # 3. Data Modeling Analytics
 The dataset was cleaned and normalized using the CLEAN framework and structured following a Snowflake schema design.  
@@ -196,6 +198,8 @@ The study utilized a combination of descriptive and predictive analytics to prov
 * **Focus:** Forecasting the future volume of electric vehicles entering the market and evaluating potential market acceleration or saturation.
 * **Questions Answered:** "What will happen next?" and "At what rate will EV adoption continue to grow?"
 * **Application:** The study involved forecasting techniques—specifically utilizing Power BI's built-in exponential smoothing algorithms. This generated predictive models like the Primary Volume Predictor, which uses trend lines and 95% statistical confidence intervals to illustrate best-case (rapid adoption) and worst-case (market disruption) future scenarios.
+
+---
 
 # 4. Visualization and Dashboard
 
