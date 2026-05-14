@@ -170,83 +170,36 @@ Min Electric Range = MIN(Vehicle_Dim[Electric Range])
 # 3. Data Modeling Analytics
 The dataset was cleaned and normalized using the CLEAN framework and structured following a Snowflake schema design.  
 <image src="DataModel.png">
-Snowflake Schema ImplementationThis approach was used to efficiently manage complex relationships among geographic attributes such as postal codes, cities, counties, and states, as well as vehicle-related attributes including VIN numbers, vehicle models, manufacturers, and other related details. The normalization process reduced data redundancy, improved consistency, and strengthened referential integrity across the database.  
+
+## Snowflake Schema Implementation
+This approach was used to efficiently manage complex relationships among geographic attributes such as postal codes, cities, counties, and states, as well as vehicle-related attributes including VIN numbers, vehicle models, manufacturers, and other related details. The normalization process reduced data redundancy, improved consistency, and strengthened referential integrity across the database.  
 By separating entities into EV_Population_Fact, EV_Dim, and hierarchical location tables (Postal_Dim -> City_Dim -> County_Dim -> State_Dim), the model optimizes query performance and allows for accurate aggregation without counting duplicate text values.  
 
+## Descriptive and Predictive Analytics
+The study utilized a combination of descriptive and predictive analytics to provide a comprehensive view of the electric vehicle (EV) market. The objective was not only to understand historical adoption patterns but also to forecast future growth.
 
+**Descriptive Analytics** was used to analyze, summarize, and present the existing EV population data.
 
+* **Focus:** Identifying trends, distributions, frequencies, and relationships among variables such as geographic location (State, County, Postal Code), vehicle manufacturer (Make/Model), electric range, and EV type (BEV vs. PHEV).
+* **Questions Answered:** "What happened?", "What is the current state of the EV market?", and "Where are the existing EV adoption hotspots?"
+* **Application:** The team used statistical summaries, Power BI visualizations, KPIs, and measures such as Total EVs Registered, Average Electric Range, and BEV vs. PHEV Proportion based on historical Department of Licensing (DOL) records.
 
+**Predictive Analytics** was applied to project future market behavior and anticipate infrastructure needs based on historical data trends.
 
+* **Focus:** Forecasting the future volume of electric vehicles entering the market and evaluating potential market acceleration or saturation.
+* **Questions Answered:** "What will happen next?" and "At what rate will EV adoption continue to grow?"
+* **Application:** The study involved forecasting techniques—specifically utilizing Power BI's built-in exponential smoothing algorithms. This generated predictive models like the Primary Volume Predictor, which uses trend lines and 95% statistical confidence intervals to illustrate best-case (rapid adoption) and worst-case (market disruption) future scenarios.
 
+## Visualization and Dashboard
 
-1. Total EVs by Model Year (Top Right)
-Role: The Primary Volume Predictor
-This line chart represents the core of the forecasting analysis. It utilizes Power BI's built-in
-exponential smoothing algorithms to project the future volume of electric vehicles entering
-the market.
-The Trend Line: The solid blue line tracks historical adoption. The shift from a flat
-trajectory to an exponential curve indicates market acceleration.
-The Grey Cone (Confidence Interval): This shaded area is crucial for presenting forecasts.
-It represents the 95% statistical confidence interval. The upper bound shows the "best-case
-scenario" (rapid, continued adoption), while the lower bound shows the "worst-case
-scenario" (market saturation or disruption).
-Presentation Note for the Team: When explaining this chart, point out the sharp drop at
-the very end of the blue line. You must explain that this is a data artifact representing the
-current, incomplete year. To achieve an accurate forecast during the live presentation, you
-will demonstrate applying the "Ignore last 1 point" parameter, which will immediately
-correct the forecast line to reflect true upward market momentum.
-•
-•
-•
-2. Scatter Chart: Range vs. Time (Bottom Left)
-Role: Technological Trajectory & Linear Regression
-While the line chart forecasts how many cars will exist, this scatter chart forecasts how capable
-those cars will be. It shifts the analysis from market volume to technological evolution.
-Linear Regression (Trend Line): The dashed black line across the chart calculates the line
-of best fit for battery efficiency. By extending this line mentally, we can predict the baseline
-range expectations for vehicles released in 2030 and beyond.
-Cluster Analysis: The chart plots historical models by type (light blue for Battery EVs, dark
-blue for Plug-in Hybrids). The visible separation of these clusters proves that pure electric
-technology is advancing rapidly, while hybrid technology is statically anchored by its
-reliance on combustion engines.
-Presentation Note for the Team: Address the fact that the trend line appears relatively
-flat. Explain that this is due to the heavy volume of low-range hybrids pulling the overall
-mathematical average down. This transitions perfectly into explaining why the slicers
-(filters) are required to run accurate, isolated forecasts for pure BEVs.
-3. Growth % by Model Year (Bottom Middle)
-Role: Velocity and Momentum Validation
-Forecasting requires an understanding of momentum. It is dangerous to forecast purely on
-absolute numbers without checking the underlying growth rate.
-Validating the Curve: The massive spike around 2011 represents the initial explosion of
-modern EV adoption. The subsequent columns show lower, but stabilized, year-over-year
-percentage growth.
-Predictive Value: As long as the growth percentage remains positive, the total volume
-curve (Chart 1) will continue to compound. If this chart began showing negative columns, it
-would act as a leading indicator that the exponential growth forecasted in the primary
-chart is at risk of failing.
-•
-•
-•
-•
-•
-4. Average Electric Range Area Chart (Bottom Right)
-Role: Market Stabilization Indicators
-This visual serves as a historical volatility check, which is necessary to defend the reliability of
-the forecasting algorithms.
-Volatility vs. Stability: The massive, jagged spikes in the early 2000s indicate a highly
-volatile, immature market where one or two niche vehicles skewed the entire average. The
-smoother, more consistent flow in recent years indicates market stabilization.
-Why it matters: Forecasting algorithms require a stable baseline to be accurate. By
-showing this chart, you prove to the audience that the "wild west" era of EV data is over,
-and the modern data feeding the predictive models in Charts 1 and 2 is robust and reliable.
-5. The Control Panel: Slicers (Left Sidebar)
-Role: Scenario Testing
-Without these slicers, the dashboard is merely a static report. The slicers transform the page
-into an interactive forecasting engine.
-Micro-Forecasting: By interacting with the "Make" and "Electric Vehicle Type" tiles, the
-team can dynamically recalculate the statistical models in real-time.
-Application: You can isolate a specific manufacturer (e.g., Tesla) to project their specific
-future market share and technological ceiling, comparing it against a legacy automaker
-(e.g., Ford) pivoting to electric. This allows the team to hypothesize and test specific market
-scenarios on the fly.
+The dashboard design follows the **DASH** framework:
 
+* **D — Decision:** Enables policymakers, infrastructure planners, and auto manufacturers to see where EV adoption is highest, determining where to build charging stations or target market incentives.
+* **A — Audience:** Targeted at **Government Transportation Officials** and **Infrastructure Planners** who need both high-level geographic breakdowns and granular vehicle performance metrics.
+* **S — Signal:** Emphasizes key signals like Total Registered EVs, BEV vs. PHEV distributions, and the Average Electric Range, immediately highlighting the current state of EV technology adoption.
+* **H — Hierarchy:** The dashboard flows from high-level geographic adoption maps and total counts, drilling down into manufacturer dominance (Make/Model), and finally evaluating clean-energy eligibility and electric range limits.
+
+### Descriptive Analytics Dashboard
+<image src="DescDash.png">
+### Predictive Analytics Dashboard
+<image src="PredDash.png">
