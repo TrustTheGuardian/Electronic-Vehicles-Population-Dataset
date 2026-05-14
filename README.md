@@ -114,8 +114,15 @@ AUGMENT THE DATA
 counties exist within a single state. 
 •	Lookup operations were performed to retrieve and integrate related data from other normalized tables, improving data consistency, relationship mapping, and overall referential integrity.
 
-NOTE AND DOCUMENT
-The dataset was cleaned and normalized using the CLEAN framework and structured following a Snowflake schema design. This approach was used to efficiently manage complex relationships among geographic attributes such as postal codes, cities, counties, and states, as well as vehicle-related attributes including VIN numbers, vehicle models, manufacturers, and other related details. The normalization process reduced data redundancy, improved consistency, and strengthened referential integrity across the database.
+### Data Processing and Normalization
+
+The dataset was cleaned and normalized following the **CLEAN** framework:
+
+* **C — Conceptualize:** Identifies the core entities within the dataset, specifically distinguishing between geographic attributes (postal codes, cities, counties, states) and vehicle-related attributes (VIN numbers, vehicle models, manufacturers).
+* **L — Locate:** Pinpoints instances of data redundancy and inconsistency within the raw dataset that need to be resolved.
+* **E — Evaluate:** Assesses the complex relationships among these various geographic and vehicle attributes to determine the optimal database architecture.
+* **A — Augment:** Enhances the dataset by structuring it into a Snowflake schema design, systematically linking fact tables and sub-dimensions to efficiently manage related details.
+* **N — Note and Document:** Confirms that the normalization process successfully reduced data redundancy, improved overall consistency, and strengthened referential integrity across the database.
 
 # 2. Exploratory Data Analysis (EDA)
 
