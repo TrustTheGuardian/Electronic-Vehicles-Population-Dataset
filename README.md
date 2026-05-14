@@ -200,6 +200,9 @@ The dashboard design follows the **DASH** framework:
 * **H — Hierarchy:** The dashboard flows from high-level geographic adoption maps and total counts, drilling down into manufacturer dominance (Make/Model), and finally evaluating clean-energy eligibility and electric range limits.
 
 ### Descriptive Analytics Dashboard
-<image src="DescDash.png">
+
+![Descriptive Dashboard](DescDash.png)
+
 ### Predictive Analytics Dashboard
-<image src="PredDash.png">
+
+![Predictive Dashboard](PredDash.png)
