@@ -86,17 +86,17 @@ Issues found:
 1. **Inconsistent Formatting:** Some postal codes were inconsistently formatted, where identical postal codes appeared both with and without leading zeros.
    * **Resolution:** Postal code values were standardized by converting them into consistent numerical representations to simplify processing and comparison.
    
-   ![Issue 1](Issue1.png)
+   ![Issue 1](IMAGES/Issue1.png)
 
 2. **Invalid Data Entries:** The electric driving range column contained values of 0, which may indicate missing or invalid data.
    * **Resolution:** Invalid driving range values of 0 were replaced with NULL to properly represent missing or unavailable data.
    
-   ![Issue 2](Issue2.png)
+   ![Issue 2](IMAGES/Issue2.png)
 
 3. **Data Redundancy:** The dataset contained redundant and repeated information across multiple rows.
    * **Resolution:** The dataset was normalized into fact tables and sub-dimensions to eliminate redundancy, improve consistency, and ensure that each attribute is stored in only one location.
    
-   ![Issue 3](Issue3.png)
+   ![Issue 3](IMAGES/Issue3.png)
 
 ---
 
@@ -105,9 +105,9 @@ Issues found:
 1. **Missing Values:** The dataset contained missing values.
    * **Resolution:** Rather than deleting, these were kept in the sub-dimensions to maintain accurate “total count” KPIs but filtered out of map visuals to prevent errors.
    
-   ![Unsolved Issue 1](UnsolvedIssue1.png)
+   ![Unsolved Issue 1](IMAGES/UnsolvedIssue1.png)
    
-   ![Unsolved Issue 2](UnsolvedIssue2.png)
+   ![Unsolved Issue 2](IMAGES/UnsolvedIssue2.png)
 
 AUGMENT THE DATA
 •	During dataset normalization, unique identifiers were assigned to each sub-dimension to properly handle complex relationships and avoid ambiguity. This includes cases where a single postal code belongs to multiple cities, a city spans multiple counties, counties share the same name across different states, or multiple 
@@ -171,7 +171,7 @@ Min Electric Range = MIN(Vehicle_Dim[Electric Range])
 
 # 3. Data Modeling Analytics
 The dataset was cleaned and normalized using the CLEAN framework and structured following a Snowflake schema design.  
-<image src="DataModel.png">
+<image src="IMAGES/DataModel.png">
 
 ## Snowflake Schema Implementation
 This approach was used to efficiently manage complex relationships among geographic attributes such as postal codes, cities, counties, and states, as well as vehicle-related attributes including VIN numbers, vehicle models, manufacturers, and other related details. The normalization process reduced data redundancy, improved consistency, and strengthened referential integrity across the database.  
@@ -203,11 +203,11 @@ The dashboard design follows the **DASH** framework:
 
 ### Descriptive Analytics Dashboard
 
-![Descriptive Dashboard](DescDash.png)
+![Descriptive Dashboard](IMAGES/DescDash.png)
 
 ### Predictive Analytics Dashboard
 
-![Predictive Dashboard](PredDash.png)
+![Predictive Dashboard](IMAGES/PredDash.png)
 
 ---
 
