@@ -49,7 +49,6 @@ Issues found:
    
    ![Issue 3](IMAGES/Issue3.png)
 
----
 
 ### Evaluate Unsolvable Issues
 
@@ -61,9 +60,8 @@ Issues found:
    ![Unsolved Issue 2](IMAGES/UnsolvedIssue2.png)
 
 AUGMENT THE DATA
-•	During dataset normalization, unique identifiers were assigned to each sub-dimension to properly handle complex relationships and avoid ambiguity. This includes cases where a single postal code belongs to multiple cities, a city spans multiple counties, counties share the same name across different states, or multiple 
-counties exist within a single state. 
-•	Lookup operations were performed to retrieve and integrate related data from other normalized tables, improving data consistency, relationship mapping, and overall referential integrity.
+*	During dataset normalization, unique identifiers were assigned to each sub-dimension to properly handle complex relationships and avoid ambiguity. This includes cases where a single postal code belongs to multiple cities, a city spans multiple counties, counties share the same name across different states, or multiple counties exist within a single state.
+*	Lookup operations were performed to retrieve and integrate related data from other normalized tables, improving data consistency, relationship mapping, and overall referential integrity.
 
 ## Data Dictionary
 
