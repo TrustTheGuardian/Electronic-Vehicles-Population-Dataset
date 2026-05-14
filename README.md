@@ -1,5 +1,4 @@
-# Electronic-Vehicles-Population-Dataset
-
+# Electric Vehicle Population Data
 DATA ANALYTICS
 BSCS – C301
 Group 1: 
@@ -10,28 +9,90 @@ Group 1:
 5. Turla, Lance Amiel
 
 DOCUMENTATION
-Dataset: https://www.kaggle.com/datasets/nilesh2042/electric-vehicle-population-data
-# 1. Data Preprocessing
+Dataset: 
+## 1. Data Preprocessing
 CONCEPTUALIZE THE DATA
-Each row in the CSV dataset represents an electric vehicle (EV) registered in a state within the United States of America (USA). Each record contains a unique Department of Licensing (DOL) ID, geographic information such as postal code, city, county, and state, as well as vehicle identification details including VIN, model year, manufacturer or brand, vehicle model, electric vehicle type, driving range, and eligibility as an alternative fuel vehicle. A vehicle with a DOL ID indicates that it has been officially purchased, registered, and approved for road use.
+The raw dataset contains over 270,000 rows and 16 columns.
+- Understanding first what every row represents: Each row in the CSV dataset represents an electric vehicle (EV) registered in a state within the United States of America (USA). A vehicle with a DOL ID indicates that it has been officially purchased, registered, and approved for road use.
+- Understanding what each code means: Each record contains a unique Department of Licensing (DOL) ID, geographic information such as postal code, city, county, and state, as well as vehicle identification details including VIN, model year, manufacturer or brand, vehicle model, electric vehicle type, driving range, and eligibility as an alternative fuel vehicle.
+- Identify whether things are qualitative or categorical values: The dataset contains geographic dimensions, vehicle specifications, and categorical eligibility types.
 
-LOCATE SOLVABLE ISSUES
-Issues found: 
-1.	Some postal codes were inconsistently formatted, where identical postal codes appeared both with and without leading zeros.
-2.	The electric driving range column contained values of 0, which may indicate missing or invalid data.
-3.	The dataset contained redundant and repeated information across multiple rows.
+## Data Dictionary
 
-Resolutions:
-1.	Postal code values were standardized by converting them into consistent numerical representations to simplify processing and comparison.
-2.	Invalid driving range values of 0 were replaced with NULL to properly represent missing or unavailable data.
-3.	The dataset was normalized into fact tables and sub-dimensions to eliminate redundancy, improve consistency, and ensure that each attribute is stored in only one location.
+### EV_Population_Fact
+| Field Name | Data Type | Description | Example |
+|---|---|---|---|
+| `VIN (1-10)` | String | Foreign Key. First 10 characters of the Vehicle Identification Number | `JN1AZ0CP5C` |
+| `Postal Code` | Float | Foreign Key. Geographic postal/ZIP code where the vehicle is registered | `99114.0` |
+| `DOL Vehicle ID` | Integer | Primary Key. Unique identifier assigned to each vehicle by the Department of Licensing | `153331706` |
+
+### EV_Dim
+| Field Name | Data Type | Description | Example |
+|---|---|---|---|
+| `VIN (1-10)` | String | Primary Key. Partial Vehicle Identification Number | `JN1AZ0CP5C` |
+| `Model Year` | Integer | Manufacturing year of the vehicle model | `2012` |
+| `Make` | String | Brand or manufacturer of the vehicle | `NISSAN` |
+| `Model` | String | Specific model of the vehicle | `LEAF` |
+| `EVType_Code` | String | Foreign Key. Code representing the electric vehicle type | `BEV` |
+| `Eligibility_Code` | Integer | Foreign Key. Code indicating alternative fuel eligibility status | `1` |
+| `Electric Range` | Float | Maximum distance the vehicle can travel on a single battery charge (in miles) | `73.0` |
+
+### EV-Type_Dim
+| Field Name | Data Type | Description | Example |
+|---|---|---|---|
+| `EVType_Code` | String | Primary Key. Abbreviation for the EV type | `BEV` |
+| `Electric Vehicle Type` | String | Full text description of the electric vehicle type | `Battery Electric Vehicle` |
+
+### Eligibility_Dim
+| Field Name | Data Type | Description | Example |
+|---|---|---|---|
+| `Eligibility_Code` | Integer | Primary Key. Numeric code for eligibility status | `1` |
+| `Clean Alternative Fuel Vehicle Eligibility` | String | Full text description explaining whether the vehicle qualifies for clean alternative fuel vehicle incentives | `Clean Alternative Fuel Vehicle Eligible` |
+
+### State_Dim
+| Field Name | Data Type | Description | Example |
+|---|---|---|---|
+| `State_Code` | String | Primary Key. The 2-letter state abbreviation | `WA` |
+| `State` | String | The full name of the state | `Washington` |
+
+### County_Dim
+| Field Name | Data Type | Description | Example |
+|---|---|---|---|
+| `County_Code` | String | Primary Key. Internal code identifying the county | `CC1`|
+| `County` | String | The name of the county | `Ada` |
+| `State` | String | Foreign Key. Links the county to its state | `ID` |
+
+### City_Dim
+| Field Name | Data Type | Description | Example |
+|---|---|---|---|
+| `City_Code` | String | Primary Key. Internal code identifying the city | `CTY1` |
+| `City` | String | The name of the city | `Aberdeen` |
+| `County_Code` | String | Foreign Key. Links the city to its respective county | `CC100` |
+
+### Postal_Dim
+| Field Name | Data Type | Description | Example |
+|---|---|---|---|
+| `Postal_Code` | Float | Primary Key. The ZIP/Postal code | `99114.0` |
+| `City_Code` | String | Foreign Key. Links the postal code to its specific city | `CTY164` |
+
+### Locate Solvable Issues
+
+Issues found:
+1. **Inconsistent Formatting:** Some postal codes were inconsistently formatted, where identical postal codes appeared both with and without leading zeros.
+   * **Resolution:** Postal code values were standardized by converting them into consistent numerical representations to simplify processing and comparison.
+   ![Postal Code Correction](image1.png)
+
+2. **Invalid Data Entries:** The electric driving range column contained values of 0, which may indicate missing or invalid data.
+   * **Resolution:** Invalid driving range values of 0 were replaced with NULL to properly represent missing or unavailable data.
+   ![Range Replacement](image2.png)
+
+3. **Data Redundancy:** The dataset contained redundant and repeated information across multiple rows.
+   * **Resolution:** The dataset was normalized into fact tables and sub-dimensions to eliminate redundancy, improve consistency, and ensure that each attribute is stored in only one location.
+   ![Data Redundancy](image3.png)
 
 EVALUATE UNSOLVABLE ISSUES
-Issues found: 
-1.	Missing values.
-
-Resolutions:
-1.	Rather than deleting, these were kept in the sub-dimensions to maintain accurate “total count” KPIs but filtered out of map visuals to prevent errors.
+  1.  **Missing Values:** The dataset contained missing values.
+  - **Resolution:** Rather than deleting, these were kept in the sub-dimensions to maintain accurate “total count” KPIs but filtered out of map visuals to prevent errors.
 
 AUGMENT THE DATA
 •	During dataset normalization, unique identifiers were assigned to each sub-dimension to properly handle complex relationships and avoid ambiguity. This includes cases where a single postal code belongs to multiple cities, a city spans multiple counties, counties share the same name across different states, or multiple 
@@ -45,19 +106,55 @@ The dataset was cleaned and normalized using the CLEAN framework and structured 
 
 KPI's and Measures:
 1.	Clean EV% - Measure to show the percentage of clean Electric vehicles used in combination with slicers for manufacturers and models to see how much of the EVs produced by them are clean fuel alternatives
+```dax
+Clean EV % = DIVIDE(CALCULATE(COUNTROWS('EV_Fact'), Vehicle_Dim[Eligibility_ID]= 1), COUNTROWS('EV_Fact'))
+```
 2.	Total EVs – Measure to count the total amount of registered EVs, used to see how many EVs there are and combined with slicer to more specifically see how much of a certain model or a certain manufacturers amount of EVs.
+```dax
+Total EVs = CALCULATE(COUNTROWS('EV_Fact')) 
+```
 3.	Average Electric Range – Measure for getting the average electric range of the EVs, used mainly to show the current general average range of EVs but with slicers it can used to show the average range of certain models or certain manufacturers’ vehicles
+```dax
+Average Electric Range = CALCULATE(AVERAGE(Vehicle_Dim[Electric Range]))
+```
 4.	Current EV Models – shows the total number of EV models, can be used with the manufacturer slicer to see the amount of models from a manufacturer.
-5.	Distinct Model per Year -shows the amount of models made/released in a year, in this case its used to show how if a model is being made or being released in that year since usually its just 1 of the model per year 
+```dax
+Current EV Models = CALCULATE(DISTINCTCOUNT(Vehicle_Dim[Model]))
+```
+5.	Distinct Model per Year -shows the amount of models made/released in a year, in this case its used to show how if a model is being made or being released in that year since usually its just 1 of the model per year
+```dax
+Distinct Models per Year = DISTINCTCOUNT(Vehicle_Dim[Model Year])
+```
 6.	Electrical Range Spread – shows the difference between the vehicle with the highest electrical range and the vehicle with the lowest electrical range, used with slicers to specify the spread of range either per model or base on all the models of a manufacturer.
-7.	EV manufacturers- used to count how many EV manufacturers there are, used with a year slicer to see how many manufacturers there are per year.
+```dax
+Electrical Range Spread = MAX(Vehicle_Dim[Electric Range]) - MIN(Vehicle_Dim[Electric Range])
+```
+7.	EV Manufacturers- used to count how many EV manufacturers there are, used with a year slicer to see how many manufacturers there are per year.
+```dax
+EV Manufacturers = DISTINCTCOUNT(Vehicle_Dim[Make])
+```
 8.	Growth % - used to show how much more or less EVs there are compared to the last year, can be used again with slicers
-9.	Model; Growth – used by the above measure to calculate the difference between the current and last year’s amount of EVs
+```dax
+Growth % = DIVIDE([Model Growth], [Previous Year Models])
+```
+9.	Model Growth – used by the above measure to calculate the difference between the current and last year’s amount of EVs
+```dax
+Model Growth = [Total EVs] - [Previous Year Models]
+```
 10.	Previous Year Model – used to calculate the models of the last year, used mainly in the Growth % measure.
+```dax
+Previous Year Models = CALCULATE([Total EVs], FILTER(ALL('Vehicle_Dim'),'Vehicle_Dim'[Model Year] = MAX('Vehicle_Dim'[Model Year]) - 1))
+```
 11.	Max Electric Range – used to show the highest range a model has.
+```dax
+Max Electric Range = MAX(Vehicle_Dim[Electric Range])
+```
 12.	Min Electric Range – used to show the lowest range a model has.
+```dax
+Min Electric Range = MIN(Vehicle_Dim[Electric Range])
+```
 
-# 3. Data Modeling / Analytics
+# 3. Data Modeling Analytics
 
 1. Total EVs by Model Year (Top Right)
 Role: The Primary Volume Predictor
