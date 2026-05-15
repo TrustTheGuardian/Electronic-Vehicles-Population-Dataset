@@ -254,8 +254,10 @@ The Overview dashboard KPIs show that the Average Electric Range across all regi
 
 The low overall average is pulled down by older, lower-range vehicles still actively registered, indicating an aging fleet segment that may benefit from targeted upgrade programs.
 
-### 4. Plug-in Hybrid Electric Vehicle Range Stagnates Due to "Two-Engine" Engineering Limits
+### 4. Plug-in Hybrid Electric Vehicle Range Stagnates Due to "Two-Engine" Engineering Limits**
+
 The forecasting data shows Plug-in Hybrid (PHEV) electric ranges flatlining because building a perfectly balanced "half-gas, half-electric" car is physically and economically impractical. Housing a large battery alongside a full internal combustion engine creates massive weight penalties that destroy efficiency, spatial constraints that compromise cargo room, and doubles both the manufacturing costs and points of mechanical failure. Consequently, automakers cap PHEV batteries, limiting them strictly to transitional, short-commute vehicles rather than long-term EV competitors.
+
 ---
 
 ## Recommendations
