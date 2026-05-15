@@ -269,7 +269,7 @@ Tesla's overwhelming lead represents a concentration risk for the EV fleet. A di
 ### 3. Launch a Fleet Modernization Initiative to Raise the Average Electric Range
 The Average Electric Range of 70.48 miles is far below the top-performing models that reach beyond 300 miles. This gap points to a significant portion of the registered fleet still comprising older, lower-range vehicles. A state-backed fleet modernization program offering trade-in incentives for pre-2018 EVs would encourage upgrades to newer, higher-range models. This would directly improve the Average Electric Range KPI, reduce range anxiety as a barrier to EV adoption, and accelerate the retirement of aging vehicles with lower battery efficiency and higher maintenance costs.
 
-### 4. PHEV Range Stagnates Due to "Two-Engine" Engineering Limits
+### 4. Plug-in Hybrid Electric Vehicle Range Stagnates Due to "Two-Engine" Engineering Limits
 The forecasting data shows Plug-in Hybrid (PHEV) electric ranges flatlining because building a perfectly balanced "half-gas, half-electric" car is physically and economically impractical. Housing a large battery alongside a full internal combustion engine creates massive weight penalties that destroy efficiency, spatial constraints that compromise cargo room, and doubles both the manufacturing costs and points of mechanical failure. Consequently, automakers cap PHEV batteries, limiting them strictly to transitional, short-commute vehicles rather than long-term EV competitors.
 
 ---
